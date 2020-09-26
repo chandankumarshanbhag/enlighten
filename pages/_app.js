@@ -23,23 +23,26 @@ export default (props) => {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <UiProvider>
-          <CssBaseline />
+        <CssBaseline />
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%" }}>
           <Loading
             color="#29D"
             startPosition="0.5"
             stopDelayMs="200"
             height="3"
           />
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <SWRConfig
-            value={{
-              refreshInterval: 3000,
-              fetcher: (...args) => { return new Http(args).useSwr(); }
-            }}>
-            <AuthProvider>
-              <Component {...pageProps} />
-            </AuthProvider>
-          </SWRConfig>
+        </div>
+
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <SWRConfig
+          value={{
+            refreshInterval: 3000,
+            fetcher: (...args) => { return new Http(args).useSwr(); }
+          }}>
+          <AuthProvider>
+            <Component {...pageProps} />
+          </AuthProvider>
+        </SWRConfig>
       </UiProvider>
     </React.Fragment>
   )

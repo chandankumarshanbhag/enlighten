@@ -14,8 +14,10 @@ import { Sidebar, Topbar } from './components';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        paddingTop: 56,
-        height: '100%',
+        position: "relative",
+        overflow: "hidden",
+        paddingTop: 64,
+        height: '100% !important',
         [theme.breakpoints.up('sm')]: {
             paddingTop: 64
         },
@@ -26,7 +28,8 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         position: "relative",
-        height: '100%'
+        height: 'calc(100vh - 64px)',
+        // overflow: "scroll"
     }
 }));
 

@@ -92,7 +92,7 @@ function Index() {
 
   return (
     <DefaultLayout sidebarItems={[]} topbar={{
-      title: "Enlighten",
+      title: "Dashboard",
       leading: null,
       trailing: null,
 

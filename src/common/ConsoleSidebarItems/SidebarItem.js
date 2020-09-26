@@ -1,6 +1,6 @@
 // import react from "react"
 import {Icon} from "@mdi/react"
-import { mdiViewDashboard,mdiAccountPlus,mdiClipboard,mdiBookshelf,mdiCertificate,mdiFileChart,mdiTune,mdiArrowLeft } from '@mdi/js';
+import { mdiViewDashboard,mdiBank,mdiAccountPlus,mdiClipboard,mdiBookshelf,mdiCertificate,mdiFileChart,mdiTune,mdiArrowLeft } from '@mdi/js';
 
 export default [
     {
@@ -17,10 +17,10 @@ export default [
         href: "/administration"
     },
     {
-        icon: <Icon path={mdiAccountPlus}
+        icon: <Icon path={mdiBank}
             size={1} />,
-        title: "Admission",
-        href: "/administration/admission"
+        title: "Institutions",
+        href: "/console/institutions"
     },
     {
         icon: <Icon path={mdiClipboard}

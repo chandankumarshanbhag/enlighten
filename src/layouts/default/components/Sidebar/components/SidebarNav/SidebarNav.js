@@ -50,6 +50,9 @@ const useStyles = makeStyles(theme => ({
     '& $icon': {
       color: theme.palette.primary.main
     }
+  },
+  divider: {
+    margin: "3px 0px"
   }
 }));
 
@@ -100,7 +103,7 @@ const SidebarNav = props => {
           </ListItem>
         </a>
         </Link>
-        {page.divider && <Divider />}
+        {page.divider && <Divider className={classes.divider} />}
         </>
       })}
     </List>

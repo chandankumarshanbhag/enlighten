@@ -20,8 +20,11 @@ const useStyles = makeStyles(theme => ({
         verticalAlign: "middle",
         flexDirection: "column"
     },
-    img: {
-        width: "300px"
+    tabs: {
+        height: "48px !important"
+    },
+    tabContainer: {
+        height: "calc(100% - 49px) !important"
     }
 }));
 
@@ -32,15 +35,17 @@ export default function Custom404() {
 
 
     return <DefaultLayout topbar={true} sidebar={{ items: SidebarItems }}>
-        <Tabs value={currentTab} onChange={(e, tab) => setCurrentTab(tab)}>
+        <Tabs value={currentTab} onChange={(e, tab) => setCurrentTab(tab)} className={classes.tabs}>
             <Tab label="New Admission"></Tab>
             <Tab label="Readmission"></Tab>
             <Tab label="Drafts"></Tab>
         </Tabs>
         <Divider />
-        {currentTab==0 && <NewAdmission />}
-        {currentTab==1 && <ReAdmission />}
-        {currentTab==2 && <Drafts />}
-        
+        <div className={classes.tabContainer}>
+            {currentTab == 0 && <NewAdmission />}
+            {currentTab == 1 && <ReAdmission />}
+            {currentTab == 2 && <Drafts />}
+        </div>
+
     </DefaultLayout>
 }
