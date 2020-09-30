@@ -4,7 +4,7 @@ import { makeStyles, withStyles } from "@material-ui/styles"
 import { Button, Typography, Tab, Tabs, Divider } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import router from "next/router";
-import SidebarItems from "common/AdministrationSidebarItems"
+import SidebarItems from "common/Administration/AdministrationSidebarItems"
 import { useState } from "react";
 import NewAdmission from "./components/NewAdmission/NewAdmission"
 import Drafts from "./components/Drafts/Drafts"
@@ -34,7 +34,7 @@ export default function Custom404() {
     const [currentTab, setCurrentTab] = useState(0)
 
 
-    return <DefaultLayout topbar={true} sidebar={{ items: SidebarItems }}>
+    return <DefaultLayout topbar={true} sidebar={{ items: SidebarItems }}  institutionSeletion={true}>
         <Tabs value={currentTab} onChange={(e, tab) => setCurrentTab(tab)} className={classes.tabs}>
             <Tab label="New Admission"></Tab>
             <Tab label="Readmission"></Tab>

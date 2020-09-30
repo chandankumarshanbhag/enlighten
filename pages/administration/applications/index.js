@@ -4,7 +4,7 @@ import { makeStyles, withStyles } from "@material-ui/styles"
 import { Button, Typography, Tab, Tabs, Divider } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import router from "next/router";
-import SidebarItems from "common/AdministrationSidebarItems"
+import SidebarItems from "common/Administration/AdministrationSidebarItems"
 import { useState } from "react";
 
 const useStyles = makeStyles(theme => ({

@@ -6,7 +6,9 @@
         "layouts/*": ["src/layouts/*"],
         "theme/*": ["src/theme/*"],
         "utils/*": ["src/utils/*"],
-        "common/*": ["src/common/*"]
+        "common/*": ["src/common/*"],
+        "db/*": ["src/db/*"],
+        "models/*": ["src/db/models"]
       }
     }
   }

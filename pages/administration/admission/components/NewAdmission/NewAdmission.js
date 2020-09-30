@@ -3,7 +3,7 @@
 import React from "react"
 import DefaultLayout from "layouts/default"
 import { makeStyles, withStyles } from "@material-ui/styles"
-import { Button, Typography, Tab, Tabs, Divider, TextField, Grid, Toolbar, IconButton, Stepper, Step, StepLabel, StepContent } from "@material-ui/core";
+import { Button, Typography, Tab, Tabs, Divider, TextField, Grid, Toolbar, IconButton, Stepper, Step, StepLabel, StepContent, StepButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import router from "next/router";
 import { useState } from "react";
@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function NewAdmission() {
     const classes = useStyles();
+    const [activeStep, setActiveStep] = useState(0)
 
     return <Formik
         initialValues={{ email: '', password: '' }}
@@ -91,141 +92,159 @@ export default function NewAdmission() {
             /* and other goodies */
         }) => (<div className={classes.root}>
             <Toolbar className={classes.topBar}>
-                <Typography variant="h6" className={classes.title}>
-
-                </Typography>
-                {/* <div className={classes.toolbarButtons}> */}
-                {/* <IconButton edge="start" className={classes.menuButton} aria-label="menu">
-                    <Icon path={mdiUndo}
-                        size={1} />
-                </IconButton>
-                <IconButton edge="start" className={classes.menuButton} aria-label="menu">
-                    <Icon path={mdiRedo}
-                        size={1} />
-                </IconButton> */}
-                <Button variant="contained" className={classes.menuButton} startIcon={<Icon path={mdiArrowLeft} size={1} />} color="default">Prev</Button>
-                <Button variant="contained" className={classes.menuButton} startIcon={<Icon path={mdiArrowRight} size={1} />} color="default">Next</Button>
+                <Typography variant="h6" className={classes.title}></Typography>
                 <Button variant="contained" className={classes.menuButton} startIcon={<Icon path={mdiContentSaveMove} size={1} />} color="default">Save Draft</Button>
                 <Button variant="contained" className={classes.menuButton} disabled={isSubmitting} onClick={handleSubmit} startIcon={<Icon path={mdiContentSave} size={1} />} color="primary">Save</Button>
                 <IconButton onClick={resetForm} edge="start" className={classes.menuButton} aria-label="menu">
                     <Icon path={mdiDelete}
                         size={1} />
                 </IconButton>
-                {/* </div> */}
             </Toolbar>
             <Divider />
 
-                <div className={classes.formContainer}>
-            <form onSubmit={handleSubmit} className={classes.form}>
-                <Stepper orientation="vertical">
-                    <Step>
-                        <StepLabel>Student Info</StepLabel>
-                        <StepContent>
-                            <Grid container spacing="2">
-                                <Grid item md={3} xs={12}>
-                                    <TextField
-                                        type="text"
-                                        name="text"
-                                        label="Application No."
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
+            <div className={classes.formContainer}>
+                <form onSubmit={handleSubmit} className={classes.form}>
+                    <Stepper orientation="vertical" activeStep={activeStep}>
+                        <Step onClick={() => setActiveStep(0)}>
+                            <StepLabel>Student Info</StepLabel>
+                            <StepContent>
+                                <Grid container spacing="2">
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="text"
+                                            name="text"
+                                            label="Application No."
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="text"
+                                            name="text"
+                                            label="REGD No."
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="text"
+                                            name="text"
+                                            label="Roll No."
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="text"
+                                            name="text"
+                                            label="Admission No."
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="text"
+                                            name="text"
+                                            label="TC No."
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={6} xs={12}>
+                                        <TextField
+                                            type="text"
+                                            name="name"
+                                            label="Name"
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={6} xs={12}>
+                                        <TextField
+                                            type="name"
+                                            name="text"
+                                            label="Name"
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="date"
+                                            name="dob"
+                                            label="Date Of Birth"
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="email"
+                                            name="email"
+                                            label="Email"
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={errors.email && touched.email}
+                                            helperText={errors.email}
+                                        />
+                                    </Grid>
+                                    <Grid item md={3} xs={12}>
+                                        <TextField
+                                            type="password"
+                                            name="password"
+                                            label="Password"
+                                            fullWidth
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.password}
+                                            error={errors.password && touched.password}
+                                            helperText={errors.password}
+                                        />
+                                    </Grid>
                                 </Grid>
-                                <Grid item md={3} xs={12}>
-                                    <TextField
-                                        type="text"
-                                        name="text"
-                                        label="REGD No."
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
-                                </Grid>
-                                <Grid item md={3} xs={12}>
-                                    <TextField
-                                        type="text"
-                                        name="text"
-                                        label="Roll No."
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
-                                </Grid>
-                                <Grid item md={3} xs={12}>
-                                    <TextField
-                                        type="text"
-                                        name="text"
-                                        label="Admission No."
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
-                                </Grid>
-                                <Grid item md={3} xs={12}>
-                                    <TextField
-                                        type="text"
-                                        name="text"
-                                        label="TC No."
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
-                                </Grid>
-                                <Grid item md={6} xs={12}>
-                                    <TextField
-                                        type="text"
-                                        name="name"
-                                        label="Name"
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
-                                </Grid>
-                                <Grid item md={6} xs={12}>
-                                    <TextField
-                                        type="name"
-                                        name="text"
-                                        label="Name"
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
-                                </Grid>
-                                <Grid item md={3} xs={12}>
-                                    <TextField
-                                        type="date"
-                                        name="dob"
-                                        label="Date Of Birth"
-                                        fullWidth
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.email}
-                                        error={errors.email && touched.email}
-                                        helperText={errors.email}
-                                    />
-                                </Grid>
+                            </StepContent>
+                        </Step>
+                        <Step onClick={() => setActiveStep(1)}>
+                            <StepLabel>Office</StepLabel>
+                            <StepContent><Grid container spacing="2">
                                 <Grid item md={3} xs={12}>
                                     <TextField
                                         type="email"
@@ -253,57 +272,25 @@ export default function NewAdmission() {
                                     />
                                 </Grid>
                             </Grid>
-                        </StepContent>
-                    </Step>
-                    <Step>
-                        <StepLabel>Office</StepLabel>
-                        <StepContent><Grid container spacing="2">
-                            <Grid item md={3} xs={12}>
-                                <TextField
-                                    type="email"
-                                    name="email"
-                                    label="Email"
-                                    fullWidth
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.email}
-                                    error={errors.email && touched.email}
-                                    helperText={errors.email}
-                                />
-                            </Grid>
-                            <Grid item md={3} xs={12}>
-                                <TextField
-                                    type="password"
-                                    name="password"
-                                    label="Password"
-                                    fullWidth
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.password}
-                                    error={errors.password && touched.password}
-                                    helperText={errors.password}
-                                />
-                            </Grid>
-                        </Grid>
-                        </StepContent>
-                    </Step>
-                    <Step>
-                        <StepLabel>Parent Info</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Qualification</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Course Details</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Documents</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Scholarship and Schemes</StepLabel>
-                    </Step>
-                </Stepper>
-            </form>
+                            </StepContent>
+                        </Step>
+                        <Step onClick={() => setActiveStep(2)} completed={false}>
+                            <StepLabel error={true}>Parent Info</StepLabel>
+                        </Step>
+                        <Step onClick={() => setActiveStep(3)}>
+                            <StepLabel>Qualification</StepLabel>
+                        </Step>
+                        <Step onClick={() => setActiveStep(4)}>
+                            <StepLabel>Course Details</StepLabel>
+                        </Step>
+                        <Step onClick={() => setActiveStep(5)}>
+                            <StepLabel>Documents</StepLabel>
+                        </Step>
+                        <Step onClick={() => setActiveStep(6)}>
+                            <StepLabel>Scholarship and Schemes</StepLabel>
+                        </Step>
+                    </Stepper>
+                </form>
             </div>
 
         </div>)}

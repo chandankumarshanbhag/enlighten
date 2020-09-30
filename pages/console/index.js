@@ -4,7 +4,8 @@ import { makeStyles, withStyles } from "@material-ui/styles"
 import { Button, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import router from "next/router";
-import ConsoleSidebarItems from "common/ConsoleSidebarItems"
+import ConsoleSidebarItems from "common/Console/ConsoleSidebarItems"
+import ConsoleAlert from "common/Console/ConsoleAlert"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,7 +28,8 @@ export default function Custom404() {
 
 
     return <DefaultLayout topbar={{
-        title: "Console"
+        title: "Console",
+        alert: ConsoleAlert
     }} sidebar={{ items: ConsoleSidebarItems }}>
         <div className={classes.root}>
             <div>

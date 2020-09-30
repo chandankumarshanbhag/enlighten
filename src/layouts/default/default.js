@@ -57,7 +57,6 @@ const DefaultLayout = props => {
     };
 
     const shouldOpenSidebar = isDesktop ? true : openSidebar;
-
     return (
         <div
             className={props.sidebar ? clsx({
@@ -82,7 +81,9 @@ const DefaultLayout = props => {
 };
 
 DefaultLayout.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    institutionSeletion: PropTypes.bool,
+    alert: PropTypes.object
 };
 
 export default DefaultLayout;

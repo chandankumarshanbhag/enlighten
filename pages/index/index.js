@@ -96,7 +96,7 @@ function Index() {
       leading: null,
       trailing: null,
 
-    }} sidebar={isAuthenticated ? {
+    }} institutionSeletion={true} sidebar={isAuthenticated ? {
       // mini: true,
       items: SidebarItems
     } : null}>

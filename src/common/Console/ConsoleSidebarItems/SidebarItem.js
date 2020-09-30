@@ -14,7 +14,7 @@ export default [
         icon: <Icon path={mdiViewDashboard}
             size={1} />,
         title: "Dashboard",
-        href: "/administration"
+        href: "/console"
     },
     {
         icon: <Icon path={mdiBank}

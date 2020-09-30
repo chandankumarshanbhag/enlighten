@@ -17,7 +17,7 @@ import Popover from '@material-ui/core/Popover';
 import Avatar from '@material-ui/core/Avatar';
 import { useUI } from "utils/ui"
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Alert from '@material-ui/lab/Alert';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -44,6 +44,9 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
+  },
+  title: {
+    minWidth: "calc(240px - 48px)"
   },
   flexGrow: {
     flexGrow: 1
@@ -101,6 +104,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     minWidth: "360px",
     maxHeight: "480px"
+  },
+  alert: {
+    // width: "80%",
+    height: "62px"
   }
 }));
 
@@ -158,7 +165,7 @@ const Topbar = props => {
             {/* <center>
           <img src="assets/logos/topbar.jpg" style={{width: "300px",height: "100%"}} />
           </center> */}
-            <RemovedUnderlineTextField
+            {props.institutionSelection?<RemovedUnderlineTextField
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               fullWidth
@@ -168,7 +175,8 @@ const Topbar = props => {
               <ListSubheader>Institutions</ListSubheader>
               <MenuItem value={10}>Bhandarkars' Arts and Science College</MenuItem>
               <MenuItem value={20}>Bhandarkars' PU College</MenuItem>
-            </RemovedUnderlineTextField>
+            </RemovedUnderlineTextField>:null}
+            {props.alert? <Alert {...props.alert} className={classes.alert}>{props.alert.message}</Alert>:null}
           </div>
           <div className={classes.flexGrow} />
           <Hidden mdDown>
