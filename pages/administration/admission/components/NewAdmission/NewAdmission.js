@@ -1,15 +1,15 @@
 
 
-import React from "react"
+import React, { useState } from "react"
 import DefaultLayout from "layouts/default"
-import { makeStyles, withStyles } from "@material-ui/styles"
-import { Button, Typography, Tab, Tabs, Divider, TextField, Grid, Toolbar, IconButton, Stepper, Step, StepLabel, StepContent, StepButton } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles"
+import { Button, Typography, MenuItem, Divider, TextField, Grid, Toolbar, IconButton, Stepper, Step, StepLabel, StepContent, StepButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import router from "next/router";
-import { useState } from "react";
 import { Icon } from "@mdi/react"
-import { mdiUndo, mdiRedo, mdiDelete, mdiArrowLeft, mdiArrowRight, mdiContentSave, mdiContentSaveMove } from '@mdi/js';
-
+import { mdiDelete, mdiArrowLeft, mdiArrowRight, mdiContentSave, mdiContentSaveMove } from '@mdi/js';
+import CountriesData from "data/countries";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Formik } from 'formik';
 
 const useStyles = makeStyles(theme => ({
@@ -63,6 +63,7 @@ export default function NewAdmission() {
     return <Formik
         initialValues={{ email: '', password: '' }}
         validate={values => {
+            console.log(values)
             const errors = {};
             if (!values.email) {
                 errors.email = 'Required';
@@ -106,7 +107,9 @@ export default function NewAdmission() {
                 <form onSubmit={handleSubmit} className={classes.form}>
                     <Stepper orientation="vertical" activeStep={activeStep}>
                         <Step onClick={() => setActiveStep(0)}>
-                            <StepLabel>Student Info</StepLabel>
+                            <StepLabel>
+                                Student Info
+                            </StepLabel>
                             <StepContent>
                                 <Grid container spacing="2">
                                     <Grid item md={3} xs={12}>
@@ -226,20 +229,27 @@ export default function NewAdmission() {
                                             helperText={errors.email}
                                         />
                                     </Grid>
-                                    <Grid item md={3} xs={12}>
+                                    <Grid item md={2} xs={12}>
                                         <TextField
-                                            type="password"
-                                            name="password"
-                                            label="Password"
+                                            type="text"
+                                            name="nationality"
+                                            label="Nationality"
                                             fullWidth
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            value={values.password}
-                                            error={errors.password && touched.password}
-                                            helperText={errors.password}
-                                        />
+                                            value={values.nationality}
+                                            error={errors.nationality && touched.nationality}
+                                            helperText={errors.nationality}
+                                            select
+                                        >
+                                            {CountriesData.map(x => <MenuItem key={x.name} value={x.name}> <img width="20px" src={"../../assets/country_flags/" + x.code.toLowerCase() + ".svg"} /> &nbsp;{x.name}</MenuItem>)}
+                                        </TextField>
                                     </Grid>
                                 </Grid>
+                                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                    <Button variant="contained">Prev</Button>
+                                    <Button color="primary" variant="contained">Next</Button>
+                                </div>
                             </StepContent>
                         </Step>
                         <Step onClick={() => setActiveStep(1)}>

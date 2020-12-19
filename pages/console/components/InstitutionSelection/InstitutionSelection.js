@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/styles"
 import { Button, Typography, Divider, Drawer, List, ListItem, ListItemText } from "@material-ui/core";
+import Http from "utils/http"
 
 const useStyles = makeStyles(theme => ({
     institutionContainer: {
         position: "relative",
-        height: "calc(100% - 64px)",
+        // height: "calc(100% - 64px)",
+        height: "100%",
         width: "100%",
-        display: "flex"
+        // display: "flex"
     },
     institutionDrawerContainer: {
         width: "336px"
@@ -18,7 +20,11 @@ const useStyles = makeStyles(theme => ({
     },
     institutionDetails: {
         display: "block",
+        position: "relative",
         width: "100%",
+        height: "calc(100% - 64px)",
+        // overflowY: "scroll",
+        paddingLeft: "336px"
         // margin: theme.spacing(2)
     },
     institutionActive: {
@@ -34,6 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 export default (props) => {
     const classes = useStyles();
+    const [selectedInstitution, setSelectedInstitution] = useState(null);
 
     return <div className={classes.institutionContainer}>
         <Drawer variant="permanent" className={classes.institutionDrawerContainer} classes={{
@@ -44,14 +51,20 @@ export default (props) => {
                     <ListItemText primary="   " secondary="Institutions"></ListItemText>
                 </ListItem>
                 <Divider />
-                <ListItem button className={classes.institutionActive}>
-                    <ListItemText primary="Bhandarkars Arts and Science College" secondary="Kundapura, Udupi DIST - 576201"></ListItemText>
-                </ListItem>
-                <Divider />
-                <ListItem button>
-                    <ListItemText primary="Bhandarkars PU College" secondary="Kundapura, Udupi DIST - 576201"></ListItemText>
-                </ListItem>
-                <Divider />
+                {props.institutions && props.institutions.map((x, key) => {
+                    return <>
+                        <ListItem button className={selectedInstitution==key?classes.institutionActive:null}  onClick={() => {
+                            setSelectedInstitution(key)
+                            if(props.onSelection){
+                                props.onSelection(x);
+                            }
+                        }}>
+                            <ListItemText primary={x.name} secondary={x.address}></ListItemText>
+                        </ListItem>
+                        <Divider />
+                    </>;
+                })}
+
             </List>
         </Drawer>
         <div className={classes.institutionDetails}>

@@ -32,8 +32,7 @@ class Http {
                 this.initiateRquest();
             }
             this.request.then((response) => {
-                console.log(response)
-                if(response && response.data && ResponseCodes.OK == response.data.code){
+                if(response && response.data){
                     callback(response);
                 }
             });

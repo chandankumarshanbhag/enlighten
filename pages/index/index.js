@@ -95,6 +95,7 @@ function Index() {
       title: "Dashboard",
       leading: null,
       trailing: null,
+      institutionSelection: true
 
     }} institutionSeletion={true} sidebar={isAuthenticated ? {
       // mini: true,

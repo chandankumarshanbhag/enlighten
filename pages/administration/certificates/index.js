@@ -25,7 +25,10 @@ export default function Custom404() {
     const classes = useStyles();
     
 
-    return <DefaultLayout topbar={true}>
+    return <DefaultLayout topbar={{
+        title: "Administration",
+        institutionSelection: true
+    }} >
         <div className={classes.root}>
             <div>
                 <img src="assets/icons/undraw/svg/undraw_Process_re_gws7.svg" className={classes.img} />

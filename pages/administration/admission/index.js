@@ -34,7 +34,10 @@ export default function Custom404() {
     const [currentTab, setCurrentTab] = useState(0)
 
 
-    return <DefaultLayout topbar={true} sidebar={{ items: SidebarItems }}  institutionSeletion={true}>
+    return <DefaultLayout topbar={{
+        title: "Administration",
+        institutionSelection: true
+    }} sidebar={{ items: SidebarItems }}  institutionSeletion={true}>
         <Tabs value={currentTab} onChange={(e, tab) => setCurrentTab(tab)} className={classes.tabs}>
             <Tab label="New Admission"></Tab>
             <Tab label="Readmission"></Tab>

@@ -19,9 +19,12 @@
     "formik": "^2.1.5",
     "jsonwebtoken": "^8.5.1",
     "material-table": "^1.69.0",
+    "mysql2": "^2.2.5",
     "next": "9.4.4",
+    "notistack": "^1.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-draggable": "^4.4.3",
     "react-top-loading-bar": "^1.2.0",
     "sequelize": "^6.3.5",
     "swr": "^0.2.3"

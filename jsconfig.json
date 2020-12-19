@@ -8,7 +8,9 @@
         "utils/*": ["src/utils/*"],
         "common/*": ["src/common/*"],
         "db/*": ["src/db/*"],
-        "models/*": ["src/db/models"]
+        "models/*": ["src/db/models/*"],
+        "data/*": ["src/data/*"],
+        "config/*": ["src/config/*"]
       }
     }
   }

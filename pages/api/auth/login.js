@@ -1,5 +1,5 @@
 import { generate } from "utils/auth/token"
-import { Response } from "utils/http"
+import { Response, ResponseCodes } from "utils/http"
 
 export default function (req, res) {
     console.log(req.body)
@@ -10,6 +10,7 @@ export default function (req, res) {
                     token: generate("hello"),
                     user: {}
                 })
+                .code(ResponseCodes.AUTH_SUCCESSFUL)
                 .json()
         );
     }

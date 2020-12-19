@@ -26,7 +26,10 @@ export default function Custom404() {
     const classes = useStyles();
 
 
-    return <DefaultLayout topbar={true} sidebar={{
+    return <DefaultLayout topbar={{
+        title: "Administration",
+        institutionSelection: true
+    }} sidebar={{
         items: SidebarItems
     }} institutionSeletion={true}>
     </DefaultLayout>

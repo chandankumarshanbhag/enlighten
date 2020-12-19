@@ -1,7 +1,7 @@
 import Sequelize from "sequelize"
-import sequelize from "../db"
+import sequelize from "../index"
 
-export default sequelize.define('institutions', {
+export default sequelize.define('students', {
     name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -14,66 +14,84 @@ export default sequelize.define('institutions', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    bloodgroup: {
+    blood_group: {
         type: Sequelize.STRING
     },
     caste: {
         type: Sequelize.STRING
     },
-    castecategory: {
+    caste_category: {
         type: Sequelize.STRING
     },
     nationality: {
+        type: Sequelize.STRING,
+        defaultValue: "INDIAN"
+    },
+    place_of_birth: {
         type: Sequelize.STRING
     },
-    placeofbirth: {
+    permanent_address: {
         type: Sequelize.STRING
     },
-    permanentaddress: {
+    correspondence_address: {
         type: Sequelize.STRING
     },
-    correspondenceaddress: {
-        type: Sequelize.STRING
-    },
-    phoneno: {
+    phone_no: {
         type: Sequelize.STRING
     },
     email: {
         type: Sequelize.STRING
     },
-    officialemail: {
+    official_email: {
         type: Sequelize.STRING
     },
 
 
     //Parent Details
-    fathername: {
+    father_name: {
         type: Sequelize.STRING
     },
-    fatherphoneno: {
+    father_phoneno: {
         type: Sequelize.STRING
     },
-    fatheroccupation: {
+    father_occupation: {
         type: Sequelize.STRING
     },
-    fatherincome: {
+    father_income: {
         type: Sequelize.STRING
     },
-    mothername: {
+    mother_name: {
         type: Sequelize.STRING
     },
-    motherphoneno: {
+    mother_phone_no: {
         type: Sequelize.STRING
     },
-    motheroccupation: {
+    mother_occupation: {
         type: Sequelize.STRING
     },
-    motherincome: {
+    mother_income: {
+        type: Sequelize.STRING
+    },
+    living_with_guardian: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false        
+    },
+    guardian_name: {
+        type: Sequelize.STRING
+    },
+    guardian_phone_no: {
+        type: Sequelize.STRING
+    },
+    guardian_occupation: {
+        type: Sequelize.STRING
+    },
+    guardian_income: {
         type: Sequelize.STRING
     },
 
 
-    //Parent Details
+    //Other Details
     aadharno: {
         type: Sequelize.NUMBER
     },
@@ -91,7 +109,7 @@ export default sequelize.define('institutions', {
     },
 
 
-
+    // College Details
     rollno: {
         type: Sequelize.STRING
     },

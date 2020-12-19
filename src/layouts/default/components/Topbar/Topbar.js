@@ -23,16 +23,22 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { red } from '@material-ui/core/colors';
 import Head from 'next/head'
+import Http from "utils/http"
+import useInstitutions from "utils/institution"
 
 const Logo = null;
 
-const RemovedUnderlineTextField = withStyles({
+const RemovedUnderlineTextField = withStyles(theme => ({
   root: {
     '& .MuiInput-underline:before': {
       border: 'none',
-    }
+    },
+    backgroundColor: theme.palette.background.dark,
+    padding: "8px",
+    borderRadius: "4px",
+    minWidth: "200px"
   },
-})(TextField);
+}))(TextField);
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(2),
   },
   title: {
-    minWidth: "calc(240px - 48px)"
+    minWidth: "calc(240px - 68px)"
   },
   flexGrow: {
     flexGrow: 1
@@ -107,7 +113,8 @@ const useStyles = makeStyles(theme => ({
   },
   alert: {
     // width: "80%",
-    height: "62px"
+    height: "62px",
+    overflow: "hidden"
   }
 }));
 
@@ -115,11 +122,13 @@ const Topbar = props => {
 
   const { setCurrentTheme, getThemes, getCurrentThemeIndex } = useUI();
   const { className, onSidebarOpen, ...rest } = props;
-
   const classes = useStyles();
-
   const [notifications] = useState([]);
   const [popover, setPopover] = React.useState({ anchorEl: null });
+  // const [institutions, setInstitutions] = useState([]);
+  const { institutions, selectedInstitution, setSelectedInstitutionById } = useInstitutions();
+
+
 
   const openPopover = (event, View) => {
     setPopover({ anchorEl: event, View });
@@ -131,7 +140,7 @@ const Topbar = props => {
 
   return (
     <>
-      <Head><title>{typeof props.title == "string" ? props.title + " | Enlighten" : "Enlighten"}</title></Head>
+      <Head><title>{typeof props.title == "string" ? props.title + " | School Management System" : "School Management System"}</title></Head>
       <AppBar
         {...rest}
         color="white"
@@ -142,11 +151,13 @@ const Topbar = props => {
           <IconButton color="inherit" onClick={() => onSidebarOpen()}>
             <MenuIcon />
           </IconButton>
-          <Link href="/">
-            <Typography className={classes.title} variant="h4" noWrap>
-              {props.title ? props.title : "Enlighten"}
-            </Typography>
-          </Link>
+          <span className={classes.title}>
+            <Link href="/">
+              <Typography variant="h4" noWrap>
+                {props.title ? props.title : "School Management System"}
+              </Typography>
+            </Link>
+          </span>
 
           {/* <div className={classes.search}>
           <div className={classes.searchIcon}>
@@ -165,18 +176,24 @@ const Topbar = props => {
             {/* <center>
           <img src="assets/logos/topbar.jpg" style={{width: "300px",height: "100%"}} />
           </center> */}
-            {props.institutionSelection?<RemovedUnderlineTextField
+            {props.institutionSelection ? <RemovedUnderlineTextField
+              InputProps={{ disableUnderline: true, color: "primary" }}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               fullWidth
               select
-              value={10}
+              value={selectedInstitution ? selectedInstitution.id : ""}
+              onChange={({ target: { value } }) => {
+                setSelectedInstitutionById(value);
+              }}
+
             >
               <ListSubheader>Institutions</ListSubheader>
-              <MenuItem value={10}>Bhandarkars' Arts and Science College</MenuItem>
-              <MenuItem value={20}>Bhandarkars' PU College</MenuItem>
-            </RemovedUnderlineTextField>:null}
-            {props.alert? <Alert {...props.alert} className={classes.alert}>{props.alert.message}</Alert>:null}
+              {institutions.filter(x => x.status == "ACTIVE").map(x => {
+                return <MenuItem value={x.id}>{x.name}</MenuItem>
+              })}
+            </RemovedUnderlineTextField> : null}
+            {props.alert ? <Alert {...props.alert} className={classes.alert}>{props.alert.message}</Alert> : null}
           </div>
           <div className={classes.flexGrow} />
           <Hidden mdDown>

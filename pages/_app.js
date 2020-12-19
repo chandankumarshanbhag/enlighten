@@ -6,16 +6,21 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme/index';
 import createTheme from '../src/theme/index';
 import Loading from "../src/components/Loading"
-import { AuthProvider } from '../src/utils/auth/authcontext'
+import useAuth, { AuthProvider } from '../src/utils/auth/authcontext'
 import useSWR, { SWRConfig } from 'swr'
 import Http from 'utils/http';
 import UiProvider, { useUI } from "utils/ui"
+import { SnackbarProvider } from "notistack"
+import { InstitutionsProvider } from "utils/institution"
+import { CircularProgress, Dialog, DialogContent, DialogContentText, Typography } from '@material-ui/core';
 
 
 
 export default (props) => {
 
   const { Component, pageProps, title } = props;
+
+
   return (
     <React.Fragment>
       <Head>
@@ -39,13 +44,44 @@ export default (props) => {
             refreshInterval: 3000,
             fetcher: (...args) => { return new Http(args).useSwr(); }
           }}>
+
+
           <AuthProvider>
-            <Component {...pageProps} />
+            <InstitutionsProvider>
+              <SnackbarProvider maxSnack={6} anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}>
+
+
+                <Component {...pageProps} />
+
+                <UserAuthentication />
+
+              </SnackbarProvider>
+            </InstitutionsProvider>
           </AuthProvider>
+
+
         </SWRConfig>
       </UiProvider>
     </React.Fragment>
   )
+}
+
+
+function UserAuthentication() {
+  const { loading } = useAuth();
+  return <Dialog open={loading}>
+    <DialogContent>
+      <DialogContentText>
+        <center>
+          <CircularProgress />
+          <Typography>Please wait</Typography>
+        </center>
+      </DialogContentText>
+    </DialogContent>
+  </Dialog>;
 }
 
 // MyApp.getServerSideProps = async function (context){
